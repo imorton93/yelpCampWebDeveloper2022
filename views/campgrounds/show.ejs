@@ -12,6 +12,9 @@
         <footer>
             <a href="/campgrounds">All Campgrounds</a>
             <a href="/campgrounds/<%= campground._id%>/edit">Edit</a>
+            <form action="/campgrounds/<%=campground._id%>?_method=Delete" method="POST">
+                <button>Delete</button>
+            </form>
         </footer>
     </body>
 </html>

@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
+const req = require('express/lib/request');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
@@ -61,6 +62,11 @@ app.put('/campgrounds/:id', async(req, res) => {
     res.redirect(`/campgrounds/${campground._id}`)
 })
 
+app.delete('/campgrounds/:id', async (req, res) => {
+    const { id } =  req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect('/campgrounds');
+})
 
 app.listen(3000, () => {
     console.log("Serving on port 3000")
